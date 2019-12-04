@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="theme-color" content="cadetblue">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        body {
+            background-color: grey;
+            margin: 0;
+        }
+        
+        .principal {
+            background-color: white;
+            margin: auto;
+            width: 1200px;
+            height: 550px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .botao {
+            display: inline-block;
+            margin-top: 1.5em;
+            background-color: green;
+            color: white;
+            border: 1px solid black;
+            cursor: pointer;
+            height: 50px;
+            width: 260px;
+            font-size: 30px;
+            
+        
+        }
+        
+        .botao:hover {
+            background-color:#8DF720;
+         
+        }
+        
+        .botao:active {
+            position: relative;
+            top: 5px;
+         
+        }
+        
+        .esp {
+            color: white;
+            margin-left: 6px;
+            margin-right: 6px;
+            display: inline-block;
+            font-size: 30px;
+            height: 80px;
+            width: 80px;
+            border: none;
+            background-color: green;
+            margin-top: 2em;
+            text-align: center;
+        }
+        
+        img {
+            top: 30px;
+            width: 400px;
+        }
+        @media only screen and (max-width: 800px) {
+    		.principal {
+     		   width: 90%;
+    		}
+    		img{
+    			width: 80%;
+    		}
+		}
+    </style>
+    <title>Mega Sena</title>
+</head>
+
+<body>
+    <div class="principal"><br>
+        <img src="mega.png" alt="Logo mega-sena"><br>
+        <form name="mega">
+            <input type="text" class="esp" id="n1" placeholder="00" disabled>
+            <input type="text" class="esp" id="n2" placeholder="00" disabled>
+            <input type="text" class="esp" id="n3" placeholder="00" disabled>
+            <input type="text" class="esp" id="n4" placeholder="00" disabled>
+            <input type="text" class="esp" id="n5" placeholder="00" disabled>
+            <input type="text" class="esp" id="n6" placeholder="00" disabled><br>
+            <input class="botao" type="button" onclick="loteria()" value="Sortear">
+        </form>
+    </div>
+    
+
+    <script type="text/javascript">
+        function loteria() {
+            var numero = [];
+            for (var i = 0; i < 6; i++) {
+                var aux = parseInt((Math.floor(Math.random() * 60 + 1)));
+                if (aux <= 09) {
+                    aux = ("0" + aux);
+                }
+                if (numero.indexOf(aux) != -1) {
+                    var x = parseInt((Math.floor(Math.random() * 60 + 1)));
+                    if (x != aux) {
+                        if (x <= 9) {
+                            x = ("0" + x);
+                        }
+                        numero.push(x);
+                    }
+                } else {
+                    numero.push(aux);
+                }
+            }
+            numero.sort();
+            document.mega.n1.value = numero[0];
+            document.mega.n2.value = numero[1];
+            document.mega.n3.value = numero[2];
+            document.mega.n4.value = numero[3];
+            document.mega.n5.value = numero[4];
+            document.mega.n6.value = numero[5];
+        }
+    </script>
+</body>
+
+</html>
